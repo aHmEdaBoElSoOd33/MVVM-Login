@@ -134,13 +134,13 @@
 		21FAA8192A077B230071DCC9 /* MVVM Login */ = {
 			isa = PBXGroup;
 			children = (
-				21FAA8642A079A3D0071DCC9 /* Extention */,
-				21FAA85B2A077F400071DCC9 /* Networking */,
-				21FAA8582A077D9B0071DCC9 /* Classes */,
-				21FAA84B2A077C580071DCC9 /* Scenes */,
 				21FAA84A2A077C4B0071DCC9 /* Core */,
-				21FAA8232A077B250071DCC9 /* Assets.xcassets */,
-				21FAA8252A077B250071DCC9 /* LaunchScreen.storyboard */,
+				21FAA85B2A077F400071DCC9 /* Networking */,
+				21FAA84B2A077C580071DCC9 /* Scenes */,
+				21FAA8582A077D9B0071DCC9 /* Classes */,
+				21FAA8642A079A3D0071DCC9 /* Extention */,
+				21FAA8762A07D0FA0071DCC9 /* Resourses */,
+				21FAA8752A07D0D90071DCC9 /* View */,
 				21FAA8282A077B250071DCC9 /* Info.plist */,
 			);
 			path = "MVVM Login";
@@ -281,6 +281,22 @@
 				21FAA86E2A07A6C20071DCC9 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		21FAA8752A07D0D90071DCC9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				21FAA8252A077B250071DCC9 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		21FAA8762A07D0FA0071DCC9 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				21FAA8232A077B250071DCC9 /* Assets.xcassets */,
+			);
+			path = Resourses;
 			sourceTree = "<group>";
 		};
 		44F683240DE9401A8939EED6 /* Pods */ = {

@@ -20,6 +20,8 @@ class ProfileVC: UIViewController {
     
     var viewModel : ProfileViewModel
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

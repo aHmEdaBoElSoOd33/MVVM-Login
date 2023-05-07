@@ -56,7 +56,6 @@ class LoginVC: UIViewController {
     
     
     func bindViewModel(){
-         
         viewModel.userData.bind { [weak self] userData in
             self?.userData = userData
         }
@@ -86,7 +85,12 @@ extension LoginVC : LoginApiDelegate{
     func loginIsDone(_ message: String) {
         //showALert(message: message)
         bindViewModel()
-        openUserProfile(userData: userData!)
+        if let userData = userData{
+            openUserProfile(userData: userData)
+        }else{
+            activityIndicator.stopAnimating()
+            showALert(message: message)
+        }
     }
     
     func loginIsFail(_ message: String) {

@@ -33,11 +33,13 @@ class LoginApi{
                 
                 switch res.result{
                 case .success(let user):
-                    UserDefaults.standard.set(user.data.token, forKey: "token")
-                    completion(user.data)
+                
+                    if let data = user.data {
+                        completion(data)
+                        print(data.token)
+                    }
                     LoginApi.delegate?.loginIsDone(user.message)
-                    
-                    print(user.data.token)
+                     
                 case .failure(let fail):
                     LoginApi.delegate?.loginIsFail(fail.localizedDescription)
                     print(fail.localizedDescription)

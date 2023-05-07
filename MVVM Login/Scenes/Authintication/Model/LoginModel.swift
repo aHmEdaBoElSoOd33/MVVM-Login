@@ -12,7 +12,7 @@ import Foundation
 struct LoginModel: Decodable {
     let status: Bool
     let message: String
-    let data: UserData
+    let data: UserData?
 }
 
 // MARK: - LoginModelData
