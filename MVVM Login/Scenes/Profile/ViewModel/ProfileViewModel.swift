@@ -23,5 +23,4 @@ class ProfileViewModel{
         self.userPhone = userData.phone
         self.userName = userData.name
     }
-    
 }

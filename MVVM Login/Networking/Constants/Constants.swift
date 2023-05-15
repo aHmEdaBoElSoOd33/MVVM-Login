@@ -9,23 +9,7 @@ import Foundation
 
 
 class Constants {
-    
-    static let shared = Constants()
-    
-    
-    private init(){
-        
-    }
-    
-    //MARK: - BaseURl
-    
-    
-    let BaseURL = "https://student.valuxapps.com/api/"
-    
-    
-    
-    //MARK: - EndPoints
-    
-    let loginEndPoint = "login"
-    
+    static let BaseURL = "https://student.valuxapps.com/api/"
+    static let loginEndPoint = "login"
 }
+

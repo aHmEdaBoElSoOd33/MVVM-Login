@@ -8,16 +8,11 @@
 import UIKit
 
 class LoginVC: UIViewController {
-    
     //MARK: - IBOutlets
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var emailTxtField: UITextField!
-    
-    
     //MARK: - Varibles
-    
     var viewModel = LoginViewModel()
     var userData : UserData?
     
@@ -26,7 +21,6 @@ class LoginVC: UIViewController {
         configeView()
     }
     //MARK: - Functions
-    
     func configeView(){
         bindIndicatorWithViewModel()
         hideKeyboardWhenTappedAround()
@@ -38,7 +32,6 @@ class LoginVC: UIViewController {
             return
         }
         showALert(message: loginUser)
-        
     }
     
     func bindIndicatorWithViewModel(){
@@ -52,9 +45,6 @@ class LoginVC: UIViewController {
         }
     }
     
-    
-    
-    
     func bindViewModel(){
         viewModel.userData.bind { [weak self] userData in
             self?.userData = userData
@@ -62,28 +52,18 @@ class LoginVC: UIViewController {
     }
     
     func openUserProfile(userData:UserData){
-        
         let profileViewModelData = ProfileViewModel(userData: userData)
         let profileViewController = ProfileVC(profileViewModelData)
-        
         present(profileViewController, animated: true)
-        
     }
-    
-    
-    
-    
     //MARK: - IBActions
     @IBAction func loginBtn(_ sender: Any) {
         loginUser()
     }
-    
 }
-
 
 extension LoginVC : LoginApiDelegate{
     func loginIsDone(_ message: String) {
-        //showALert(message: message)
         bindViewModel()
         if let userData = userData{
             openUserProfile(userData: userData)
@@ -97,5 +77,4 @@ extension LoginVC : LoginApiDelegate{
         showALert(message: message)
         activityIndicator.stopAnimating()
     }
-    
 }

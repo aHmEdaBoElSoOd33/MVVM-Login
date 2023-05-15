@@ -8,46 +8,29 @@
 import Foundation
 import Alamofire
 
-
 protocol LoginApiDelegate {
-    
     func loginIsDone(_ message:String)
     func loginIsFail(_ message :String)
-    
 }
 
-
-class LoginApi{
+class LoginApi : BaseAPI<LoginNetworking>{
     
     static var delegate : LoginApiDelegate?
     
-    func loginUser(completion:@escaping (UserData) -> Void ,  _ email: String , _ password : String){
-        
-        let LoginUrl = Constants.shared.BaseURL+Constants.shared.loginEndPoint
-        let params = ["email":email , "password":password]
-        let headers = HTTPHeaders(["lang" : "en"])
-        
-        AF.request(LoginUrl, method: .post, parameters: params, encoder: .json, headers: headers).responseDecodable(of: LoginModel.self){ res in
-            
-            if res.response?.statusCode == 200{
-                
-                switch res.result{
-                case .success(let user):
-                
-                    if let data = user.data {
-                        completion(data)
-                        print(data.token)
-                    }
-                    LoginApi.delegate?.loginIsDone(user.message)
-                     
-                case .failure(let fail):
-                    LoginApi.delegate?.loginIsFail(fail.localizedDescription)
-                    print(fail.localizedDescription)
+    func loginUser(completion:@escaping (Result<UserData,NetworkError>) -> Void ,  _ email: String , _ password : String){
+        self.fetchData(target: .loginUser(email: email, password: password), responseClass: LoginModel.self) { response in
+            switch response{
+            case .success(let alldata):
+                if let userData = alldata?.data{
+                    completion(.success(userData))
+                    LoginApi.delegate?.loginIsDone(alldata!.message)
+                }else{
+                    LoginApi.delegate?.loginIsDone(alldata!.message)
                 }
-            }else{
-                print("Not 200")
+            case .failure(let error):
+                completion(.failure(error))
+                LoginApi.delegate?.loginIsFail(error.localizedDescription)
             }
         }
     }
-    
 }
