@@ -8,7 +8,6 @@
 import UIKit
 import Kingfisher
 
-
 class ProfileVC: UIViewController {
     
     //MARK: - IBOutlets
@@ -21,11 +20,16 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        DispatchQueue.main.asyncAfter(deadline : .now()+5){[weak self] in
+            guard let self = self else {return}
+            print("stopped")
+            self.phoneLbl.text = ""
+        }
         configeView()
     }
-    
-    
+    deinit{
+        print("Done")
+    }
     init(_ viewModel : ProfileViewModel){
         self.viewModel = viewModel
         super.init(nibName: "ProfileVC", bundle: nil)

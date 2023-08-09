@@ -17,11 +17,12 @@ class LoginViewModel {
     func loginUser(_ email:String , _ password:String){
         isLoading.value = true
         loginApi.loginUser(completion: { [weak self] data in
-            self?.isLoading.value = false
+            guard let self = self else {return}
+            self.isLoading.value = false
             switch data {
             case .success(let data):
-                self?.dataSource = data
-                self?.userData.value =  self?.dataSource
+                self.dataSource = data
+                self.userData.value =  self.dataSource
             case .failure(let error):
                 print(error)
             }
@@ -46,7 +47,6 @@ class LoginViewModel {
     func loginWithValidation(_ email : String? , _ password : String?)->String?{
         validate(email, password)
         guard let emptyField = validationState else {return nil}
-        
         return emptyField
     }
 }
